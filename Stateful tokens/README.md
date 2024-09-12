@@ -2,7 +2,7 @@
 
 Here we've got a simple example of a stateful token.
 
-The token is a simple bunch of characters which is 32 characters long. 
+The token is a random bunch of characters which is 32 characters long. 
 
 This token implementation is stateful because it is stored in a variable.
 

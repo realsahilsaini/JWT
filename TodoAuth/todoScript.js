@@ -120,12 +120,14 @@ async function getTodos() {
       },
     });
 
+    console.log(response.data);
 
     const todoList = document.getElementById("todos-list");
 
     todoList.innerHTML = "";
 
     const todosList  = document.getElementById("todos-list");
+
 
     if (response.data.length) {
       response.data.forEach((todo) => {
@@ -134,10 +136,9 @@ async function getTodos() {
         todoDiv.classList.add("todo");
         todoDiv.innerHTML = `
         <div class="todo" style="display: flex; align-items: center; gap: 2rem;">
-                    <p>${todo.id}</p>
                     <p>${todo.task}</p>
-                    <button onclick="updateTodo(${todo.id})" style="height: 30px;">Update</button>
-                    <button onclick="deleteTodo(${todo.id})" style="height: 30px;">Delete</button>
+                    <button onclick="updateTodo('${todo._id}')" style="height: 30px;">Update</button>
+                    <button onclick="deleteTodo('${todo._id}')" style="height: 30px;">Delete</button>
           </div>
         `;
         todosList.appendChild(todoDiv);
@@ -195,7 +196,7 @@ async function deleteTodo(id){
 
 async function updateTodo(id){
 
-  const taskid = id;
+  const todoId = id;
   
   const newTask = prompt('Enter new task');
 
@@ -207,7 +208,8 @@ async function updateTodo(id){
   try{
     const token = localStorage.getItem('token');
 
-    await axios.put(`http://localhost:3000/todos/${taskid}`,{task: newTask},{headers: {token: token} });
+    await axios.put(`http://localhost:3000/todos/${todoId}`,{task: newTask},{headers: {token: token} });
+    
   }catch(err){
     console.error(err);
   }

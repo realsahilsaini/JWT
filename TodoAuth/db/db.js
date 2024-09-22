@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 // const ObjectId = Schema.ObjectId;
 
 const User = new Schema({
-  username: String,
+  username: {type: String, unique: true},
   password: String
 });
 

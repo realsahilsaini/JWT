@@ -33,9 +33,7 @@ async function signup() {
 
     toggleForm();
   } catch (err) {
-    if (err.response.status === 409) {
-      alert("Username already exists");
-    }
+    alert(err.response.data.message);
   }
 }
 
